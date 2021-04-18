@@ -1,0 +1,65 @@
+PSP Mac Spoofer.
+
+Este es un plugin para cambiar temporalmente la direccion mac que tu PSP envia a los puntos de accesos u otros dispositivos Wifi.
+
+Este plugin NO:
+
+- Cambia la dirección mac guardada en el idstorage. (eso no tiene sentido, ya que solo cambia la mac de la información del sistema).
+  Por lo tanto, todavía verás tu vieja mac en información del sistema.
+
+- Cambia la mac address de solo lectura escrita en el chip wlan.
+
+Este plugin:
+
+- Cambia la direccion mac que tu psp envía a otros dispositivos wireless.
+  Es util si quieres esconder tu direccion mac real a otra gente por algun motivo,
+  o si quieres traspasar alguna proteccion basada en filtros mac de tus vecinos :)
+
+  Puedes ver tu mac cambiada cuando pruebas una conexión en el XMB, o si miras en los logs del router.
+
+  Por defecto, el firmware de Sony "le dice" al firmware del chip wlan que use la dirección mac interna.
+  Este plugin simplemente cambia eso.
+
+Requisitos:
+
+- 3.71 M33. Puede que funcione en versiones futuras de M33, pero no esta garantizado.
+
+Instrucciones:
+
+- Copia el directorio PSP a tu memory stick. Ejecuta el programa MAC Spoofer Install.
+  Este program reflasheará los archivos de configuracion, cambiando el orden de carga de algunos modulos.
+  Esto es necesario porque el plugin necesita ejecutarse antes que wlan.prx.
+
+- Copia seplugins a tu memory stick, y activa el plugin en ambos, vsh y game.
+
+La direccion mac será cambiada a la contenida en /seplugins/mac.txt
+Puedes usar los caracteres RR para especificar que macspoofer debería randomizar ese byte.
+
+- Ejemplos de mac validas:
+
+33:33:33:33:33:33   -> Establece esa mac especific, una mac certificada por el M33 team :p
+
+00:1c:26:RR:RR:RR   -> Establece los 3 primeros bytes de la mac a 00:1C:26, que es el codigo de
+la compaía Hon Hai/Fox Conn, la manufacturadora del chip de la psp slim, y randomiza los 3 ultimos bytes.
+
+00:16:FE:RR:RR:RR: -> Establece los 3 primeros bytes a 00:16:FE, que es el codigo de
+Alps Electronics, la compañía manufacturadora de (algunos) chips de la psp fat, y randomiza los 3 ultimos bytes.
+
+00:RR:RR:RR:RR:RR -> El primer byte es establecido a 00 para parecer una mac correcta, y el resto es randomizado.
+
+
+Si quieres usar el codigo de X manufacturadora, echa un vistazo a http://standards.ieee.org/regauth/oui/oui.txt
+
+
+- Ejemplos de mac incorrectas:
+
+- 333333333333 -> Falta el separador ":"
+- 00:2E:4R:FF:22:DE -> No se puede aplicar la aletoreidad a la mitad de un byte.
+- 00:2G:RR:FF:DA:E1 -> "G" no es un caracter hexadecimal válido.
+- 00:1C:26:33:12 -> falta el ultimo byte de la mac.
+
+Para volver a tu vieja mac, puedes establecer la mac FF:FF:FF:FF:FF:FF o simplemente desactiva el plugin.
+
+Nota: el plugin será desinstalado cuando se reflashea un cfw completo. Tendrás que volver a hacer el proceso
+de nuevo al instalar un nuevo firmware, aunque por la naturaleza "parcheadora" del plugin, puede que no funcion en
+firmware sfuturos sin una actualización.
